@@ -763,43 +763,24 @@
 /* ═══════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  /* Disable all animations */
+
   .academics-header.animate-in .academics-title,
   .academics-header.animate-in .academics-subtext,
   .academics-cards-container.animate-in .academics-card {
     animation: none;
     opacity: 1;
-    transform: translate(0) scale(1);
+    transform: none;
   }
 
-  .academics-header::before {
-    animation: none;
-  }
-
-  .academics-bg-layer-animated {
-    animation: none;
-    opacity: 0.5;
-  }
-
+  .academics-header::before,
+  .academics-bg-layer-animated,
   .academics-card,
-  .academics-card-number {
-    animation: none;
-    transition: none;
-  }
-
-  .academics-connecting-line {
-    animation: none;
-    transition: none;
-  }
-
+  .academics-card-number,
+  .academics-connecting-line,
   .energy-core,
   .energy-glow-1,
   .energy-glow-2 {
     animation: none;
   }
 
-  /* Remove complex transitions */
-  * {
-    transition: none !important;
-  }
 }
