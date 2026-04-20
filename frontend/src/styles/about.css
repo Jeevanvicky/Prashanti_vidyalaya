@@ -1,0 +1,458 @@
+/* ═══════════════════════════════════════════════════════ */
+/* ABOUT SECTION — PREMIUM SPLIT LAYOUT WITH PARALLAX */
+/* ═══════════════════════════════════════════════════════ */
+
+/* SECTION WRAPPER — Base color layer */
+.about-wrapper {
+  height: 90vh;
+  background: #f9f7f5;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* BACKGROUND LAYERS — Gradient depth + glow */
+/* ═══════════════════════════════════════════════════════ */
+
+/* LAYER 2 — Horizontal gradient (warm left → cool right) */
+.about-bg-layer-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 245, 240, 0.3) 0%,
+    rgba(240, 245, 255, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* LAYER 3 — Soft glow behind text area (premium feel) */
+.about-bg-layer-glow {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.5) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* MAIN CONTAINER — Split layout wrapper */
+/* ═══════════════════════════════════════════════════════ */
+
+.about-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 90vh;
+  margin: 0 auto;
+  padding: 100px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* LEFT SIDE — IMAGE BLOCK */
+/* ═══════════════════════════════════════════════════════ */
+
+.about-image-block {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: all 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-image-block:hover {
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.15), 0 0 40px rgba(125, 74, 138, 0.1);
+  transform: scale(1.02);
+}
+
+.about-image-block:hover .about-image {
+  transform: scale(1.08);
+  filter: brightness(1);
+}
+
+/* Image styling — Long duration hover transition */
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 12px;
+  transition: transform 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 1500ms ease-out;
+  filter: brightness(0.95);
+}
+
+/* Entry animation for image — Long duration, sophisticated */
+.about-image-block.animate-in {
+  animation: imageSlideIn 1600ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes imageSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px) rotateY(-8deg) scale(0.95);
+    filter: blur(8px);
+  }
+  50% {
+    transform: translateX(-20px) rotateY(-3deg) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Continuous floating animation for content block */
+@keyframes contentFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RIGHT SIDE — TEXT CONTENT BLOCK */
+/* ═══════════════════════════════════════════════════════ */
+
+.about-content-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* TYPOGRAPHY — Title */
+/* ═══════════════════════════════════════════════════════ */
+
+.about-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #5a2a4d;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0 0 16px 0;
+  padding: 0;
+  transition: all 1400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  display: inline-block;
+}
+
+.about-title::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7d4a8a, transparent);
+  transition: width 1200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-content-block:hover .about-title {
+  color: #7d4a8a;
+  transform: translateX(4px);
+}
+
+.about-content-block:hover .about-title::after {
+  width: 50px;
+}
+
+/* Entry animation for title — 1500ms sophisticated reveal */
+.about-content-block.animate-in .about-title {
+  animation: titleFadeInDown 1500ms cubic-bezier(0.34, 1.56, 0.64, 1) 200ms forwards;
+}
+
+@keyframes titleFadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scaleY(0.9);
+    letter-spacing: 2px;
+  }
+  50% {
+    letter-spacing: 1px;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    letter-spacing: -0.5px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* TYPOGRAPHY — Description */
+/* ═══════════════════════════════════════════════════════ */
+
+.about-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0 0 20px 0;
+  padding: 0;
+  font-weight: 400;
+  transition: all 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-content-block:hover .about-description {
+  color: #2a2a2a;
+  transform: translateX(2px);
+}
+
+/* Entry animation for description — 1500ms with movement */
+.about-content-block.animate-in .about-description {
+  animation: descriptionFadeIn 1500ms cubic-bezier(0.34, 1.56, 0.64, 1) 350ms forwards;
+}
+
+@keyframes descriptionFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* VISION SECTION */
+/* ═══════════════════════════════════════════════════════ */
+
+.about-vision {
+  margin: 20px 0 12px 0;
+}
+
+.about-vision-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5a2a4d;
+  margin: 0 0 8px 0;
+  padding: 0;
+  letter-spacing: -0.2px;
+  transition: all 1400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-vision-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  transition: all 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-content-block:hover .about-vision-title {
+  color: #7d4a8a;
+  transform: translateX(3px);
+}
+
+.about-content-block:hover .about-vision-text {
+  color: #2a2a2a;
+  transform: translateX(2px);
+}
+
+/* Entry animation for vision — 1500ms sophisticated reveal */
+.about-content-block.animate-in .about-vision {
+  animation: visionSlideUp 1500ms cubic-bezier(0.34, 1.56, 0.64, 1) 500ms forwards;
+}
+
+@keyframes visionSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(0.95);
+  }
+  50% {
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* MISSION SECTION */
+/* ═══════════════════════════════════════════════════════ */
+
+.about-mission {
+  margin: 12px 0 0 0;
+}
+
+.about-mission-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5a2a4d;
+  margin: 0 0 8px 0;
+  padding: 0;
+  letter-spacing: -0.2px;
+  transition: all 1400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-mission-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  transition: all 1500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-content-block:hover .about-mission-title {
+  color: #7d4a8a;
+  transform: translateX(3px);
+}
+
+.about-content-block:hover .about-mission-text {
+  color: #2a2a2a;
+  transform: translateX(2px);
+}
+
+/* Entry animation for mission — 1500ms sophisticated reveal */
+.about-content-block.animate-in .about-mission {
+  animation: missionSlideUp 1500ms cubic-bezier(0.34, 1.56, 0.64, 1) 650ms forwards;
+}
+
+@keyframes missionSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(0.95);
+  }
+  50% {
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN — TABLET (768px and below) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .about-wrapper {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    padding: 60px 20px;
+    height: auto;
+    gap: 40px;
+  }
+
+  .about-image-block {
+    height: 400px;
+    width: 100%;
+  }
+
+  .about-title {
+    font-size: 1.8rem;
+  }
+
+  .about-description {
+    font-size: 0.95rem;
+  }
+
+  .about-vision-title,
+  .about-mission-title {
+    font-size: 1rem;
+  }
+
+  .about-vision-text,
+  .about-mission-text {
+    font-size: 0.9rem;
+  }
+
+  .about-bg-layer-glow {
+    width: 300px;
+    height: 300px;
+    right: 10%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN — MOBILE (480px and below) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 40px 16px;
+    gap: 24px;
+  }
+
+  .about-image-block {
+    height: 300px;
+  }
+
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-description {
+    font-size: 0.9rem;
+  }
+
+  .about-vision,
+  .about-mission {
+    margin-top: 16px;
+  }
+
+  .about-bg-layer-glow {
+    width: 200px;
+    height: 200px;
+    right: 5%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* NO ANIMATION MODE — For reduced motion preference */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-image-block.animate-in,
+  .about-content-block.animate-in .about-title,
+  .about-content-block.animate-in .about-description,
+  .about-content-block.animate-in .about-vision,
+  .about-content-block.animate-in .about-mission {
+    animation: none;
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  .about-image {
+    transition: none;
+  }
+}

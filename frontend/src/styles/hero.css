@@ -1,0 +1,251 @@
+/* ═══════════════════════════════════════════════════════ */
+/* HERO SECTION — REFINED PRO VERSION */
+/* ═══════════════════════════════════════════════════════ */
+
+/* WRAPPER — 90vh with soft gradient + radial highlight */
+.hero-wrapper {
+  height: 90vh;
+  background: linear-gradient(135deg, #fdf6f9 0%, #f3e8ee 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add subtle radial highlight at center */
+.hero-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CONTAINER — Centered with top breathing space */
+/* ═══════════════════════════════════════════════════════ */
+
+.hero-container {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 60px 20px 80px;
+  text-align: center;
+  z-index: 1;
+  transform-origin: center;
+  transition: transform 0.1s ease-out;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* TYPOGRAPHY — Title */
+/* ═══════════════════════════════════════════════════════ */
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #5a2a4d;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
+  animation: slideUpFadeIn 0.8s ease-out 0.1s both;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* TYPOGRAPHY — Tagline */
+/* ═══════════════════════════════════════════════════════ */
+
+.hero-tagline {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #6b3b5d;
+  margin: 12px 0 0 0;
+  padding: 0;
+  letter-spacing: 0.2px;
+  animation: slideUpFadeIn 0.8s ease-out 0.3s both;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* TYPOGRAPHY — Description */
+/* ═══════════════════════════════════════════════════════ */
+
+.hero-description {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #7a4a6d;
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 16px 0 0 0;
+  padding: 0;
+  opacity: 0.9;
+  animation: slideUpFadeIn 0.8s ease-out 0.5s both;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* BUTTONS — Container */
+/* ═══════════════════════════════════════════════════════ */
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: slideUpFadeIn 0.8s ease-out 0.7s both;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* BUTTONS — Base Styles */
+/* ═══════════════════════════════════════════════════════ */
+
+.btn {
+  padding: 13px 32px;
+  border-radius: 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  letter-spacing: 0.3px;
+}
+
+/* PRIMARY BUTTON */
+.btn.primary {
+  background: #5a2a4d;
+  color: white;
+  border: 2px solid #5a2a4d;
+}
+
+.btn.primary:hover {
+  background: #4a1f3d;
+  border-color: #4a1f3d;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(90, 42, 77, 0.3);
+}
+
+/* SECONDARY BUTTON */
+.btn.secondary {
+  background: transparent;
+  color: #5a2a4d;
+  border: 2px solid #5a2a4d;
+}
+
+.btn.secondary:hover {
+  background: #5a2a4d;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(90, 42, 77, 0.25);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* ANIMATIONS — Load Page Entry */
+/* ═══════════════════════════════════════════════════════ */
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.3rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-wrapper {
+    height: 100vh;
+  }
+
+  .hero-container {
+    height: 100vh;
+    padding: 40px 20px 60px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    max-width: 90%;
+  }
+
+  .btn {
+    padding: 11px 28px;
+    font-size: 0.95rem;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-wrapper {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .hero-container {
+    height: auto;
+    min-height: 100vh;
+    padding: 30px 16px 50px;
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px 24px;
+  }
+}

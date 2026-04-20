@@ -1,0 +1,805 @@
+/* ═══════════════════════════════════════════════════════ */
+/* ACADEMICS & LEARNING SECTION — FUTURISTIC ENERGY FLOW */
+/* Premium motion design with intelligent card activation */
+/* ═══════════════════════════════════════════════════════ */
+
+/* SECTION WRAPPER — Elegant, minimal base with enhanced background */
+.academics-wrapper {
+  height: 85vh;
+  background: linear-gradient(180deg, #faf8fc 0%, #f5f3f8 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BACKGROUND LAYER 1 — Static radial gradient */
+.academics-bg-layer-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 80% 50%, rgba(125, 74, 138, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* BACKGROUND LAYER 2 — Animated subtle gradient shift */
+.academics-bg-layer-animated {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(125, 74, 138, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(106, 58, 125, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: backgroundPulse 12s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 0.8;
+    filter: blur(0.5px);
+  }
+}
+
+/* BACKGROUND LAYER 3 — Pattern (can be enabled) */
+.academics-bg-layer-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* MAIN CONTAINER */
+/* ═══════════════════════════════════════════════════════ */
+
+.academics-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 85vh;
+  margin: 0 auto;
+  padding: 100px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* HEADER SECTION */
+/* ═══════════════════════════════════════════════════════ */
+
+.academics-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  padding-top: 20px;
+}
+
+/* Elegant accent line above header */
+.academics-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7d4a8a, transparent);
+  border-radius: 1px;
+  animation: accentPulse 3s ease-in-out infinite;
+}
+
+@keyframes accentPulse {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(125, 74, 138, 0.4);
+  }
+}
+
+/* Title animation — Elegant reveal with sophisticated timing */
+.academics-header.animate-in .academics-title {
+  animation: titleEnter 1500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes titleEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scaleY(0.95);
+    letter-spacing: 2px;
+  }
+  50% {
+    letter-spacing: 1px;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    letter-spacing: -0.8px;
+  }
+}
+
+/* Title styling — Strong visual hierarchy */
+.academics-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #5a2a4d;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+
+/* Subtext animation */
+.academics-header.animate-in .academics-subtext {
+  animation: subtextEnter 1500ms cubic-bezier(0.34, 1.56, 0.64, 1) 300ms forwards;
+  opacity: 0;
+}
+
+@keyframes subtextEnter {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Subtext styling */
+.academics-subtext {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARDS WRAPPER & CONNECTING LINE */
+/* ═══════════════════════════════════════════════════════ */
+
+.academics-cards-wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Connecting line container — Premium, minimal */
+.academics-connecting-line-container {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(217, 211, 224, 0.6);
+  z-index: 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Base connecting line — Gradient progression */
+.academics-connecting-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, 
+    rgba(125, 74, 138, 0.4) 0%, 
+    rgba(125, 74, 138, 0.8) 50%, 
+    rgba(125, 74, 138, 0.4) 100%
+  );
+  transition: width 1800ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+  box-shadow: 
+    0 0 8px rgba(125, 74, 138, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  animation: lineGlow 2500ms ease-in-out infinite;
+}
+
+@keyframes lineGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 8px rgba(125, 74, 138, 0.3),
+      inset 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(125, 74, 138, 0.6),
+      inset 0 0 12px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* ENERGY PARTICLE — Intelligent flowing orb */
+/* ═══════════════════════════════════════════════════════ */
+
+.academics-energy-particle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 0 8px rgba(125, 74, 138, 0.8));
+}
+
+/* Core of the energy particle */
+.energy-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #7d4a8a, #9d6db8);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 12px rgba(125, 74, 138, 0.8),
+    0 0 24px rgba(157, 109, 184, 0.6),
+    inset 0 0 4px rgba(255, 255, 255, 0.4);
+  animation: energyPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes energyPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 
+      0 0 12px rgba(125, 74, 138, 0.8),
+      0 0 24px rgba(157, 109, 184, 0.6),
+      inset 0 0 4px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 
+      0 0 16px rgba(125, 74, 138, 0.95),
+      0 0 32px rgba(157, 109, 184, 0.8),
+      inset 0 0 6px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* First glow ring */
+.energy-glow-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(125, 74, 138, 0.4);
+  border-radius: 50%;
+  animation: glowRing1 2.5s linear infinite;
+}
+
+@keyframes glowRing1 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Second glow ring */
+.energy-glow-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(125, 74, 138, 0.3);
+  border-radius: 50%;
+  animation: glowRing2 2.5s linear infinite 0.8s;
+}
+
+@keyframes glowRing2 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARDS CONTAINER */
+/* ═══════════════════════════════════════════════════════ */
+
+.academics-cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* INDIVIDUAL CARD STYLING — Enhanced with activation */
+/* ═══════════════════════════════════════════════════════ */
+
+.academics-card {
+  background: #ffffff;
+  border: 1px solid #e8e0f0;
+  border-radius: 12px;
+  padding: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: all 0.35s ease-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* Background glow element (depth layer) */
+.academics-card-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(125, 74, 138, 0.08), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.academics-card:hover .academics-card-bg-glow,
+.academics-card.active .academics-card-bg-glow {
+  width: 300px;
+  height: 300px;
+}
+
+/* Entry animation for cards — Consistent staggered timing */
+.academics-cards-container.animate-in .academics-card {
+  animation: cardEnter 1400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes cardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) rotateX(-10deg) scale(0.95);
+    filter: blur(4px);
+  }
+  50% {
+    transform: translateY(15px) rotateX(-3deg) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Subtle floating animation — Very smooth, always present */
+.academics-card {
+  animation: cardFloat 4s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Regular hover effect — Smooth and elegant */
+.academics-card {
+  transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.academics-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(125, 74, 138, 0.18), 
+    0 0 30px rgba(125, 74, 138, 0.08),
+    0 0 0 1px rgba(125, 74, 138, 0.1);
+  border-color: rgba(125, 74, 138, 0.5);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(240, 235, 250, 0.8) 100%);
+}
+
+/* ACTIVE STATE — Card is being energized by the particle */
+.academics-card.active {
+  transform: scale(1.03) translateY(-2px);
+  border-color: rgba(125, 74, 138, 0.6);
+  box-shadow: 
+    0 16px 32px rgba(125, 74, 138, 0.22),
+    0 0 40px rgba(125, 74, 138, 0.12),
+    0 0 0 2px rgba(125, 74, 138, 0.15);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(245, 240, 252, 0.95) 100%);
+  animation: cardActiveGlow 0.6s ease-out;
+}
+
+@keyframes cardActiveGlow {
+  0% {
+    box-shadow: 
+      0 16px 32px rgba(125, 74, 138, 0.25),
+      0 0 50px rgba(125, 74, 138, 0.2),
+      0 0 0 3px rgba(125, 74, 138, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 16px 32px rgba(125, 74, 138, 0.22),
+      0 0 40px rgba(125, 74, 138, 0.12),
+      0 0 0 2px rgba(125, 74, 138, 0.15);
+  }
+}
+
+/* Active highlight accent — Elegant top accent */
+.academics-card-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    #7d4a8a, 
+    transparent
+  );
+  border-radius: 12px 12px 0 0;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  z-index: 3;
+}
+
+.academics-card.active .academics-card-highlight {
+  opacity: 1;
+  animation: highlightFlash 0.6s ease-out;
+}
+
+@keyframes highlightFlash {
+  0% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 rgba(125, 74, 138, 0.4);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 4px rgba(125, 74, 138, 0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARD NUMBER CIRCLE — Premium badge with pulse */
+/* ═══════════════════════════════════════════════════════ */
+
+.academics-card-number {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7d4a8a, #6a3a7d);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(125, 74, 138, 0.15);
+  transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  z-index: 2;
+  animation: numberFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes numberFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Number circle hover */
+.academics-card:hover .academics-card-number {
+  transform: scale(1.15) translateY(-8px) rotateZ(5deg);
+  box-shadow: 
+    0 12px 28px rgba(125, 74, 138, 0.35), 
+    0 0 20px rgba(125, 74, 138, 0.15);
+}
+
+/* PULSE EFFECT — When card becomes active */
+.academics-card-number.pulse {
+  animation: numberPulse 0.5s ease-out;
+}
+
+@keyframes numberPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 
+      0 4px 12px rgba(125, 74, 138, 0.15),
+      0 0 0 0 rgba(125, 74, 138, 0.4);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 
+      0 8px 20px rgba(125, 74, 138, 0.3),
+      0 0 0 8px rgba(125, 74, 138, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 
+      0 4px 12px rgba(125, 74, 138, 0.15),
+      0 0 0 0 rgba(125, 74, 138, 0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARD CONTENT — Text styling */
+/* ═══════════════════════════════════════════════════════ */
+
+.academics-card-content {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card title — Premium typography */
+.academics-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #5a2a4d;
+  line-height: 1.35;
+  margin: 0 0 12px 0;
+  padding: 0;
+  letter-spacing: -0.3px;
+  transition: all 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  z-index: 1;
+}
+
+/* Title underline accent */
+.academics-card-title::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7d4a8a, transparent);
+  transition: width 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.academics-card:hover .academics-card-title,
+.academics-card.active .academics-card-title {
+  color: #7d4a8a;
+  transform: translateX(4px);
+}
+
+.academics-card:hover .academics-card-title::after,
+.academics-card.active .academics-card-title::after {
+  width: 40px;
+}
+
+/* Card text — Clear, readable */
+.academics-card-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #555555;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  transition: all 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  z-index: 1;
+}
+
+.academics-card:hover .academics-card-text,
+.academics-card.active .academics-card-text {
+  color: #3d3d3d;
+  transform: translateX(2px);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE — TABLET (1024px and below) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .academics-cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .academics-card {
+    padding: 20px;
+  }
+
+  .academics-title {
+    font-size: 1.8rem;
+  }
+
+  .academics-container {
+    padding: 80px 40px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE — MOBILE (768px and below) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .academics-wrapper {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .academics-container {
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  .academics-cards-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .academics-header {
+    margin-bottom: 40px;
+  }
+
+  .academics-title {
+    font-size: 1.6rem;
+  }
+
+  .academics-subtext {
+    font-size: 0.95rem;
+  }
+
+  .academics-card {
+    padding: 16px;
+  }
+
+  .academics-card-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .academics-card-title {
+    font-size: 1rem;
+  }
+
+  .academics-card-text {
+    font-size: 0.9rem;
+  }
+
+  /* Adjust connecting line for mobile stacked layout */
+  .academics-connecting-line-container {
+    display: none;
+  }
+
+  .academics-energy-particle {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE — SMALL MOBILE (480px and below) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .academics-container {
+    padding: 40px 16px;
+  }
+
+  .academics-header {
+    margin-bottom: 30px;
+  }
+
+  .academics-title {
+    font-size: 1.4rem;
+  }
+
+  .academics-subtext {
+    font-size: 0.9rem;
+  }
+
+  .academics-card {
+    padding: 14px;
+  }
+
+  .academics-card-number {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .academics-card-title {
+    font-size: 0.95rem;
+  }
+
+  .academics-card-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* NO ANIMATION MODE — For reduced motion preference */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations */
+  .academics-header.animate-in .academics-title,
+  .academics-header.animate-in .academics-subtext,
+  .academics-cards-container.animate-in .academics-card {
+    animation: none;
+    opacity: 1;
+    transform: translate(0) scale(1);
+  }
+
+  .academics-header::before {
+    animation: none;
+  }
+
+  .academics-bg-layer-animated {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .academics-card,
+  .academics-card-number {
+    animation: none;
+    transition: none;
+  }
+
+  .academics-connecting-line {
+    animation: none;
+    transition: none;
+  }
+
+  .energy-core,
+  .energy-glow-1,
+  .energy-glow-2 {
+    animation: none;
+  }
+
+  /* Remove complex transitions */
+  * {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,1433 @@
+/* ===========================
+   PREMIUM ADMISSION MODAL STYLES
+   =========================== */
+
+/* Global animation properties */
+:root {
+  --easing-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-decel: cubic-bezier(0, 0, 0.2, 1);
+  --easing-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.5s;
+  --color-success: #4CAF50;
+  --color-error: #ef5350;
+  --color-primary: #4a90e2;
+}
+
+/* ===========================
+   BACKDROP ANIMATION
+   =========================== */
+
+.admission-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: backdropFadeIn 0.4s var(--easing-standard);
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* ===========================
+   MODAL CONTAINER ANIMATION
+   =========================== */
+
+.admission-modal {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px;
+  position: relative;
+  will-change: transform, opacity;
+  animation: modalEnter 0.5s var(--easing-smooth);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Submit transition animation */
+.admission-modal.submitted {
+  animation: modalExit 0.4s var(--easing-standard) forwards;
+}
+
+@keyframes modalExit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
+    filter: blur(8px);
+  }
+}
+
+/* ===========================
+   CLOSE BUTTON
+   =========================== */
+
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  transition: all var(--transition-fast) var(--easing-standard);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, color;
+}
+
+.modal-close-btn:hover:not(:disabled) {
+  color: #333;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.modal-close-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ===========================
+   MODAL HEADER
+   =========================== */
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInDown 0.5s var(--easing-smooth) 0.1s forwards;
+}
+
+.modal-header h1 {
+  font-size: 28px;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.modal-header p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   FORM STYLES
+   =========================== */
+
+.admission-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-error {
+  background: #fee;
+  border: 1.5px solid #ef5350;
+  color: #c33;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  animation: errorShake 0.5s var(--easing-elastic) 0s forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes errorShake {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  25% {
+    transform: translateY(0) translateX(-4px) scale(1);
+  }
+  50% {
+    transform: translateY(0) translateX(4px) scale(1);
+  }
+  75% {
+    transform: translateY(0) translateX(-2px) scale(1);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+  position: relative;
+}
+
+/* Staggered entry animation for form groups */
+.admission-modal.animating .form-group[data-index="2"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.15s forwards;
+}
+
+.admission-modal.animating .form-group[data-index="3"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.2s forwards;
+}
+
+.admission-modal.animating .form-row[data-index="4"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.25s forwards;
+}
+
+.admission-modal.animating .form-group[data-index="5"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.3s forwards;
+}
+
+.admission-modal.animating .submit-btn[data-index="6"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.35s forwards;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  transition: color var(--transition-fast) var(--easing-standard);
+}
+
+/* ===========================
+   INPUT FIELD ANIMATIONS
+   =========================== */
+
+.form-group input,
+.form-group select {
+  padding: 12px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all var(--transition-fast) var(--easing-standard);
+  background: white;
+  position: relative;
+  will-change: transform, border-color, box-shadow;
+}
+
+/* Input underline animation */
+.form-group input::after,
+.form-group select::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.3s var(--easing-smooth);
+}
+
+/* Hover state */
+.form-group input:hover:not(:disabled):not(:focus),
+.form-group select:hover:not(:disabled):not(:focus) {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #bbb;
+}
+
+/* Focus state - the premium moment */
+.form-group.focused input,
+.form-group.focused select,
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15), 0 8px 20px rgba(74, 144, 226, 0.2);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Dim non-focused fields */
+.form-group:not(.focused) input,
+.form-group:not(.focused) select {
+  opacity: 1;
+  transition: opacity var(--transition-fast) var(--easing-standard);
+}
+
+.form-group.focused ~ .form-group input:not(:focus),
+.form-group.focused ~ .form-group select:not(:focus) {
+  opacity: 0.85;
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ===========================
+   FORM ROW (Two columns)
+   =========================== */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+}
+
+.form-row .form-group {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===========================
+   SUBMIT BUTTON - PREMIUM INTERACTION
+   =========================== */
+
+.submit-btn {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-standard);
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  opacity: 0;
+  transform: translateY(20px);
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+  letter-spacing: 0.5px;
+}
+
+/* Ripple effect on click */
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Hover state */
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+/* Active/Click state */
+.submit-btn:active:not(:disabled) {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Loading state - pulse animation */
+.submit-btn.loading {
+  animation: buttonPulse 1.5s var(--easing-smooth) infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+/* Disabled state */
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   SUCCESS STATE - PREMIUM MODAL
+   =========================== */
+
+.success-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.03) 0%, rgba(74, 144, 226, 0.03) 100%);
+  border-radius: 16px;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* Premium glassmorphism card effect */
+.success-content {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(76, 175, 80, 0.15);
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 0 80px rgba(76, 175, 80, 0.05);
+  animation: successModalEnter 0.7s var(--easing-smooth) forwards;
+  opacity: 0;
+  transform: scale(0.92) translateY(30px);
+  will-change: transform, opacity;
+}
+
+@keyframes successModalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Success icon with glow */
+.success-icon-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 32px;
+  animation: iconGlowEnter 0.7s var(--easing-smooth) 0.1s forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@keyframes iconGlowEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* Premium glow effect behind icon */
+.success-icon-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.25) 0%, rgba(76, 175, 80, 0.05) 50%, rgba(76, 175, 80, 0) 100%);
+  border-radius: 50%;
+  animation: glowPulseEnhanced 3s var(--easing-smooth) 0.3s infinite;
+}
+
+@keyframes glowPulseEnhanced {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.6;
+  }
+}
+
+.success-icon {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-success);
+  fill: none;
+  animation: iconBounceEnhanced 0.8s var(--easing-elastic) 0.2s;
+  filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.15));
+}
+
+/* SVG stroke animation for checkmark */
+.checkmark-stroke {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  animation: strokeDraw 0.7s var(--easing-smooth) 0.4s forwards;
+}
+
+@keyframes strokeDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes iconBounceEnhanced {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateY(-8px);
+  }
+}
+
+.success-title {
+  font-size: 26px;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.25s forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-subtitle {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 20px 0;
+  line-height: 1.6;
+  font-weight: 500;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.3s forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.success-quote {
+  font-size: 14px;
+  color: #777;
+  font-style: italic;
+  margin: 24px 0;
+  padding: 16px 20px;
+  border-left: 4px solid var(--color-success);
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.04) 0%, rgba(76, 175, 80, 0.02) 100%);
+  border-radius: 6px;
+  line-height: 1.8;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.35s forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Trust-building contact line */
+.success-contact-info {
+  font-size: 13px;
+  color: #aaa;
+  margin: 12px 0 0 0;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.42s forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.success-continue-btn {
+  padding: 14px 40px;
+  background: linear-gradient(135deg, var(--color-success) 0%, #45a049 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-standard);
+  margin-top: 28px;
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.25);
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.48s forwards;
+  opacity: 0;
+  letter-spacing: 0.5px;
+  will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
+}
+
+.success-continue-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+}
+
+.success-continue-btn:hover:not(:disabled) {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 12px 32px rgba(76, 175, 80, 0.35);
+}
+
+.success-continue-btn:active:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 640px) {
+  .admission-modal {
+    width: 95%;
+    padding: 32px 24px;
+    max-height: 95vh;
+  }
+
+  .modal-header h1 {
+    font-size: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .modal-close-btn {
+    top: 16px;
+    right: 16px;
+    font-size: 20px;
+  }
+
+  .success-content {
+    padding: 32px 20px;
+    max-width: 90%;
+  }
+
+  .success-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .success-title {
+    font-size: 20px;
+  }
+
+  .success-continue-btn {
+    font-size: 14px;
+    padding: 10px 24px;
+  }
+}
+
+/* ===========================
+   SCROLLBAR STYLING
+   =========================== */
+
+.admission-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admission-modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.admission-modal::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.admission-modal::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+/* ===========================
+   PERFORMANCE OPTIMIZATION
+   =========================== */
+
+/* GPU acceleration */
+.admission-modal-backdrop {
+  transform: translateZ(0);
+}
+
+.success-container {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===========================
+   BACKDROP ANIMATION
+   =========================== */
+
+.admission-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: backdropFadeIn 0.4s var(--easing-standard);
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* ===========================
+   MODAL CONTAINER ANIMATION
+   =========================== */
+
+.admission-modal {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px;
+  position: relative;
+  will-change: transform, opacity;
+  animation: modalEnter 0.5s var(--easing-smooth);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Submit transition animation */
+.admission-modal.submitted {
+  animation: modalExit 0.4s var(--easing-standard) forwards;
+}
+
+@keyframes modalExit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
+    filter: blur(8px);
+  }
+}
+
+/* ===========================
+   CLOSE BUTTON
+   =========================== */
+
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  transition: all var(--transition-fast) var(--easing-standard);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, color;
+}
+
+.modal-close-btn:hover:not(:disabled) {
+  color: #333;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.modal-close-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ===========================
+   MODAL HEADER
+   =========================== */
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInDown 0.5s var(--easing-smooth) 0.1s forwards;
+}
+
+.modal-header h1 {
+  font-size: 28px;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.modal-header p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   FORM STYLES
+   =========================== */
+
+.admission-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-error {
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  animation: slideInDown 0.4s var(--easing-smooth) 0.05s forwards;
+  will-change: transform, opacity;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+}
+
+/* Staggered entry animation for form groups */
+.admission-modal.animating .form-group[data-index="2"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.15s forwards;
+}
+
+.admission-modal.animating .form-group[data-index="3"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.2s forwards;
+}
+
+.admission-modal.animating .form-row[data-index="4"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.25s forwards;
+}
+
+.admission-modal.animating .form-group[data-index="5"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.3s forwards;
+}
+
+.admission-modal.animating .submit-btn[data-index="6"] {
+  animation: slideInDown 0.5s var(--easing-smooth) 0.35s forwards;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  transition: color var(--transition-fast) var(--easing-standard);
+}
+
+/* ===========================
+   INPUT FIELD ANIMATIONS
+   =========================== */
+
+.form-group input,
+.form-group select {
+  padding: 12px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all var(--transition-fast) var(--easing-standard);
+  background: white;
+  position: relative;
+  will-change: transform, border-color, box-shadow;
+}
+
+/* Hover state */
+.form-group input:hover:not(:disabled):not(:focus),
+.form-group select:hover:not(:disabled):not(:focus) {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #bbb;
+}
+
+/* Focus state - the premium moment */
+.form-group.focused input,
+.form-group.focused select,
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15), 0 8px 20px rgba(74, 144, 226, 0.2);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Dim non-focused fields */
+.form-group:not(.focused) input,
+.form-group:not(.focused) select {
+  opacity: 1;
+  transition: opacity var(--transition-fast) var(--easing-standard);
+}
+
+.form-group.focused ~ .form-group input:not(:focus),
+.form-group.focused ~ .form-group select:not(:focus) {
+  opacity: 0.85;
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ===========================
+   FORM ROW (Two columns)
+   =========================== */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+}
+
+.form-row .form-group {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===========================
+   SUBMIT BUTTON - PREMIUM INTERACTION
+   =========================== */
+
+.submit-btn {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-standard);
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  opacity: 0;
+  transform: translateY(20px);
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* Hover state */
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+/* Active/Click state */
+.submit-btn:active:not(:disabled) {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Loading state - pulse animation */
+.submit-btn.loading {
+  animation: buttonPulse 1.5s var(--easing-smooth) infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+/* Disabled state */
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   SUCCESS STATE ANIMATION
+   =========================== */
+
+.success-container {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  animation: successReveal 0.6s var(--easing-smooth) forwards;
+}
+
+@keyframes successReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.success-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+  animation: successBounce 0.7s var(--easing-smooth);
+  will-change: transform;
+}
+
+@keyframes successBounce {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.success-container h2 {
+  font-size: 24px;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+  opacity: 0;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.2s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-container p {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.3s forwards;
+}
+
+.success-details {
+  color: #888;
+  font-size: 13px;
+  margin-top: 12px;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.4s forwards !important;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 640px) {
+  .admission-modal {
+    width: 95%;
+    padding: 32px 24px;
+    max-height: 95vh;
+  }
+
+  .modal-header h1 {
+    font-size: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .modal-close-btn {
+    top: 16px;
+    right: 16px;
+    font-size: 20px;
+  }
+
+  .success-icon {
+    font-size: 48px;
+  }
+
+  .success-container h2 {
+    font-size: 20px;
+  }
+}
+
+/* ===========================
+   SCROLLBAR STYLING
+   =========================== */
+
+.admission-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admission-modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.admission-modal::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.admission-modal::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+/* ===========================
+   PERFORMANCE OPTIMIZATION
+   =========================== */
+
+/* GPU acceleration */
+.admission-modal-backdrop {
+  transform: translateZ(0);
+}
+
+.success-container {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }======== */
+
+.submit-btn {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-standard);
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  opacity: 0;
+  transform: translateY(20px);
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* Hover state */
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+/* Active/Click state */
+.submit-btn:active:not(:disabled) {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Loading state - pulse animation */
+.submit-btn.loading {
+  animation: buttonPulse 1.5s var(--easing-smooth) infinite;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+/* Disabled state */
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   SUCCESS STATE ANIMATION
+   =========================== */
+
+.success-container {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  animation: successReveal 0.6s var(--easing-smooth) forwards;
+}
+
+@keyframes successReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.success-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+  animation: successBounce 0.7s var(--easing-smooth);
+  will-change: transform;
+}
+
+@keyframes successBounce {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.success-container h2 {
+  font-size: 24px;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+  opacity: 0;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.2s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-container p {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.3s forwards;
+}
+
+.success-details {
+  color: #888;
+  font-size: 13px;
+  margin-top: 12px;
+  animation: fadeInUp 0.6s var(--easing-smooth) 0.4s forwards !important;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 640px) {
+  .admission-modal {
+    width: 95%;
+    padding: 32px 24px;
+    max-height: 95vh;
+  }
+
+  .modal-header h1 {
+    font-size: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .modal-close-btn {
+    top: 16px;
+    right: 16px;
+    font-size: 20px;
+  }
+
+  .success-icon {
+    font-size: 48px;
+  }
+
+  .success-container h2 {
+    font-size: 20px;
+  }
+}
+
+/* ===========================
+   SCROLLBAR STYLING
+   =========================== */
+
+.admission-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admission-modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.admission-modal::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.admission-modal::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+/* ===========================
+   PERFORMANCE OPTIMIZATION
+   =========================== */
+
+/* GPU acceleration */
+.admission-modal-backdrop {
+  transform: translateZ(0);
+}
+
+.success-container {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.admission-modal::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}

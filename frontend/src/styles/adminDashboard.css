@@ -1,0 +1,387 @@
+/* ===========================
+   ADMIN DASHBOARD STYLES
+   =========================== */
+
+.admin-dashboard {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
+.dashboard-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 32px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content h1 {
+  font-size: 28px;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+}
+
+.header-content p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===========================
+   CONTAINER
+   =========================== */
+
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* ===========================
+   TOOLBAR
+   =========================== */
+
+.dashboard-toolbar {
+  background: white;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.toolbar-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.app-count {
+  font-size: 14px;
+  color: #666;
+}
+
+.app-count strong {
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.refresh-btn,
+.export-btn {
+  padding: 10px 18px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #333;
+}
+
+.refresh-btn:hover:not(:disabled),
+.export-btn:hover:not(:disabled) {
+  background: #f5f7fa;
+  border-color: #bbb;
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+}
+
+.export-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6d4399 100%);
+}
+
+.refresh-btn:disabled,
+.export-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   ERROR MESSAGE
+   =========================== */
+
+.dashboard-error {
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+/* ===========================
+   LOADING STATE
+   =========================== */
+
+.loading-state {
+  background: white;
+  border-radius: 8px;
+  padding: 60px 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #f0f0f0;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* ===========================
+   EMPTY STATE
+   =========================== */
+
+.empty-state {
+  background: white;
+  border-radius: 8px;
+  padding: 60px 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.empty-state p {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.empty-state span {
+  font-size: 14px;
+  color: #999;
+}
+
+/* ===========================
+   TABLE
+   =========================== */
+
+.table-wrapper {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+.applications-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.applications-table thead {
+  background: #f8f9fa;
+  border-bottom: 2px solid #eee;
+}
+
+.applications-table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.applications-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.app-row {
+  transition: background-color 0.2s;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.app-row:hover {
+  background: #f8f9fa;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.app-name {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.app-email,
+.app-phone {
+  color: #666;
+  font-size: 13px;
+}
+
+.app-class {
+  background: #f0f4ff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 500;
+  color: #667eea;
+}
+
+.app-date {
+  color: #999;
+  font-size: 13px;
+}
+
+/* ===========================
+   STATUS BADGE
+   =========================== */
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-new {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-contacted {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-admitted {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.status-rejected {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .logout-btn {
+    align-self: flex-end;
+  }
+
+  .dashboard-toolbar {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+  }
+
+  .refresh-btn,
+  .export-btn {
+    flex: 1;
+  }
+
+  .applications-table th,
+  .applications-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  /* Hide less important columns on mobile */
+  .app-email,
+  .app-date {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 16px 12px;
+  }
+
+  .dashboard-header {
+    padding: 24px 16px;
+  }
+
+  .header-content h1 {
+    font-size: 22px;
+  }
+
+  .applications-table th,
+  .applications-table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .app-name {
+    max-width: 120px;
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}

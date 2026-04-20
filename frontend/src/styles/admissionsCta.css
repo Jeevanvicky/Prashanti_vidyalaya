@@ -1,0 +1,471 @@
+/* ========================================== */
+/* ADMISSIONS CTA - CONVERSION ENGINE */
+/* ========================================== */
+
+.admissions-cta {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 100px 40px;
+  box-sizing: border-box;
+}
+
+/* ========================================== */
+/* BACKGROUND LAYER SYSTEM (3 LAYERS) */
+/* ========================================== */
+
+.admissions-cta__bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* LAYER 1: DEEP GRADIENT (Royal Purple → Soft Maroon) */
+.admissions-cta__bg-gradient {
+  background: linear-gradient(
+    135deg,
+    #4a1a5c 0%,
+    #5a2a4d 50%,
+    #3d1a3d 100%
+  );
+  animation: gradient-pulse 12s ease-in-out infinite;
+}
+
+@keyframes gradient-pulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* LAYER 2: LIGHT GLOW BEHIND TEXT */
+.admissions-cta__bg-glow {
+  background: radial-gradient(
+    circle at 50% 40%,
+    rgba(212, 163, 115, 0.2) 0%,
+    rgba(157, 132, 183, 0.1) 30%,
+    transparent 60%
+  );
+  animation: glow-breathe 8s ease-in-out infinite;
+}
+
+@keyframes glow-breathe {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+/* LAYER 3: SUBTLE MOVING GRADIENT WAVES */
+.admissions-cta__bg-waves {
+  background: 
+    linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.03) 100%
+    ),
+    linear-gradient(
+      -45deg,
+      rgba(200, 150, 255, 0.05) 0%,
+      transparent 50%,
+      rgba(200, 150, 255, 0.05) 100%
+    );
+  background-size: 400% 400%;
+  animation: wave-shift 15s ease-in-out infinite;
+}
+
+@keyframes wave-shift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* ========================================== */
+/* CONTENT CONTAINER */
+/* ========================================== */
+
+.admissions-cta__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+
+.admissions-cta__content.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ========================================== */
+/* TITLE - ADMISSIONS OPEN 2026 */
+/* ========================================== */
+
+.admissions-cta__title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: title-reveal 1s ease-out 0.4s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes title-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================== */
+/* HEADLINE - WORD-BY-WORD ANIMATION */
+/* ========================================== */
+
+.admissions-cta__headline-container {
+  margin-bottom: 16px;
+  animation: headline-container-reveal 0.8s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+@keyframes headline-container-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.admissions-cta__headline {
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  margin: 0;
+  letter-spacing: 0.2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.headline-word {
+  display: inline-block;
+  opacity: 0;
+  animation: word-fade-in 0.6s ease-out forwards;
+  animation-delay: calc(0.5s + var(--word-index) * 0.08s);
+}
+
+@keyframes word-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================== */
+/* URGENCY LINE */
+/* ========================================== */
+
+.admissions-cta__urgency {
+  font-size: 14px;
+  color: rgba(212, 163, 115, 0.9);
+  margin: 0;
+  margin-bottom: 30px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  animation: urgency-reveal 0.8s ease-out 1.2s forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes urgency-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================== */
+/* CTA BUTTON - CONVERSION CRITICAL */
+/* ========================================== */
+
+.admissions-cta__button {
+  position: relative;
+  padding: 18px 60px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a1a3a;
+  background: linear-gradient(135deg, #d4a373 0%, #e8b97f 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(212, 163, 115, 0.3);
+  animation: button-enter 0.8s ease-out 1.4s forwards,
+             button-pulse 2s ease-in-out 2.4s infinite;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  margin-bottom: 12px;
+}
+
+@keyframes button-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes button-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 30px rgba(212, 163, 115, 0.3);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 15px 45px rgba(212, 163, 115, 0.5);
+  }
+}
+
+.admissions-cta__button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #e8b97f 0%, #f0c490 100%);
+  box-shadow: 0 20px 60px rgba(212, 163, 115, 0.6);
+}
+
+.admissions-cta__button:active {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(212, 163, 115, 0.5);
+}
+
+.admissions-cta__button:hover.hovering {
+  animation: button-pulse 2s ease-in-out infinite;
+}
+
+/* ========================================== */
+/* MICRO REASSURANCE TEXT */
+/* ========================================== */
+
+.admissions-cta__micro-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  animation: micro-reveal 0.8s ease-out 1.6s forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes micro-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================== */
+/* FOCUS LOCK EFFECT (VISUAL HIERARCHY) */
+/* ========================================== */
+
+.admissions-cta {
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================== */
+/* RESPONSIVE DESIGN */
+/* ========================================== */
+
+/* TABLET (1024px and below) */
+@media (max-width: 1024px) {
+  .admissions-cta {
+    height: 65vh;
+    padding: 80px 30px;
+  }
+
+  .admissions-cta__title {
+    font-size: 40px;
+    margin-bottom: 14px;
+  }
+
+  .admissions-cta__headline {
+    font-size: 20px;
+  }
+
+  .admissions-cta__button {
+    padding: 16px 50px;
+    font-size: 15px;
+  }
+
+  .admissions-cta__micro-text {
+    font-size: 11px;
+  }
+}
+
+/* MOBILE (768px and below) */
+@media (max-width: 768px) {
+  .admissions-cta {
+    height: auto;
+    min-height: 80vh;
+    padding: 60px 20px;
+  }
+
+  .admissions-cta__title {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .admissions-cta__headline {
+    font-size: 18px;
+    gap: 4px;
+  }
+
+  .headline-word {
+    animation-delay: calc(0.5s + var(--word-index) * 0.06s);
+  }
+
+  .admissions-cta__urgency {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .admissions-cta__button {
+    padding: 14px 45px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .admissions-cta__micro-text {
+    font-size: 11px;
+  }
+}
+
+/* SMALL MOBILE (480px and below) */
+@media (max-width: 480px) {
+  .admissions-cta {
+    min-height: 75vh;
+    padding: 50px 15px;
+  }
+
+  .admissions-cta__title {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .admissions-cta__headline {
+    font-size: 16px;
+    line-height: 1.55;
+    gap: 3px;
+  }
+
+  .headline-word {
+    animation-delay: calc(0.5s + var(--word-index) * 0.05s);
+  }
+
+  .admissions-cta__urgency {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .admissions-cta__button {
+    padding: 12px 40px;
+    font-size: 13px;
+  }
+
+  .admissions-cta__micro-text {
+    font-size: 10px;
+  }
+}
+
+/* ========================================== */
+/* ACCESSIBILITY */
+/* ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .admissions-cta__bg-gradient,
+  .admissions-cta__bg-glow,
+  .admissions-cta__bg-waves,
+  .admissions-cta__content,
+  .admissions-cta__title,
+  .admissions-cta__headline-container,
+  .headline-word,
+  .admissions-cta__urgency,
+  .admissions-cta__button,
+  .admissions-cta__micro-text {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .admissions-cta__content {
+    opacity: 1;
+    transform: none;
+  }
+
+  .admissions-cta__title,
+  .admissions-cta__headline-container,
+  .admissions-cta__urgency,
+  .admissions-cta__button,
+  .admissions-cta__micro-text {
+    opacity: 1;
+    transform: none;
+  }
+}

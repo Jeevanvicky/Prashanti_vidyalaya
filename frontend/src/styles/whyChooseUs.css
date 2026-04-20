@@ -1,0 +1,311 @@
+/* ═══════════════════════════════════════════════════════ */
+/* WHY CHOOSE US SECTION — TRUST + DIFFERENTIATION */
+/* ═══════════════════════════════════════════════════════ */
+
+/* SECTION WRAPPER */
+.why-choose-us {
+  height: 80vh;
+  background: linear-gradient(180deg, #faf8fb 0%, #f5f2f8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add subtle radial glow at center */
+.why-choose-us::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CONTAINER */
+/* ═══════════════════════════════════════════════════════ */
+
+.why-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 80px 20px;
+  text-align: center;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* TYPOGRAPHY — Title */
+/* ═══════════════════════════════════════════════════════ */
+
+.why-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #5a2a4d;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* TYPOGRAPHY — Subtext */
+/* ═══════════════════════════════════════════════════════ */
+
+.why-subtext {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6b5a6d;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARD GRID — 4 Column Layout */
+/* ═══════════════════════════════════════════════════════ */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARD DESIGN */
+/* ═══════════════════════════════════════════════════════ */
+
+.why-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(90, 42, 77, 0.08);
+  border: 1px solid rgba(90, 42, 77, 0.05);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  cursor: pointer;
+}
+
+.why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(90, 42, 77, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARD ICON */
+/* ═══════════════════════════════════════════════════════ */
+
+.why-card-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.why-card:hover .why-card-icon {
+  transform: scale(1.05);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARD TITLE */
+/* ═══════════════════════════════════════════════════════ */
+
+.why-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #5a2a4d;
+  margin: 0 0 12px 0;
+  padding: 0;
+  letter-spacing: -0.2px;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CARD TEXT */
+/* ═══════════════════════════════════════════════════════ */
+
+.why-card-text {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #6b5a6d;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  opacity: 0.85;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* ANIMATIONS — Scroll Into View */
+/* ═══════════════════════════════════════════════════════ */
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title Animation */
+.fade-in-title {
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+}
+
+/* Subtext Animation */
+.fade-in-subtext {
+  animation: slideUpFadeIn 0.8s ease-out 0.2s forwards;
+}
+
+/* Card Animation with Stagger */
+.fade-in-card {
+  animation: slideUpFadeInCard 0.8s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+  .why-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .why-card {
+    padding: 20px 16px;
+  }
+
+  .why-title {
+    font-size: 2.2rem;
+  }
+
+  .why-subtext {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 800px;
+  }
+
+  .why-title {
+    font-size: 2rem;
+  }
+
+  .why-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-choose-us {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .why-container {
+    padding: 60px 20px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .why-title {
+    font-size: 1.8rem;
+  }
+
+  .why-subtext {
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+
+  .why-card {
+    padding: 20px;
+  }
+
+  .why-card-icon {
+    font-size: 2.5rem;
+  }
+
+  .why-card-title {
+    font-size: 1.1rem;
+  }
+
+  .why-card-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-choose-us {
+    min-height: auto;
+  }
+
+  .why-container {
+    padding: 40px 16px;
+  }
+
+  .why-title {
+    font-size: 1.5rem;
+  }
+
+  .why-subtext {
+    font-size: 0.85rem;
+  }
+
+  .why-grid {
+    gap: 16px;
+    padding: 0;
+  }
+
+  .why-card {
+    padding: 18px;
+  }
+
+  .why-card-icon {
+    font-size: 2rem;
+  }
+
+  .why-card-title {
+    font-size: 1rem;
+  }
+
+  .why-card-text {
+    font-size: 0.85rem;
+  }
+}

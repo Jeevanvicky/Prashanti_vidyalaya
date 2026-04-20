@@ -1,0 +1,412 @@
+/* ═══════════════════════════════════════════════════════ */
+/* ACHIEVEMENTS SECTION — Trust + Proof Section */
+/* Minimal Data + Maximum Impact + Motion Psychology */
+/* ═══════════════════════════════════════════════════════ */
+
+.achievements-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* BACKGROUND LAYERS — Premium layered design */
+/* ═══════════════════════════════════════════════════════ */
+
+/* Layer 1: Deep gradient (dark → darker) */
+.achievements-bg-dark {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #2a1a3a 0%,
+    #1a0f2e 50%,
+    #0f050a 100%
+  );
+  z-index: 1;
+}
+
+/* Layer 2: Subtle radial glow behind center */
+.achievements-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(125, 74, 138, 0.15) 0%,
+    rgba(90, 42, 77, 0.08) 30%,
+    transparent 70%
+  );
+  z-index: 2;
+  pointer-events: none;
+  animation: glowShift 8s ease-in-out infinite;
+}
+
+@keyframes glowShift {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Layer 3: Very faint pattern (dots / grid) */
+.achievements-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* CONTAINER */
+/* ═══════════════════════════════════════════════════════ */
+
+.achievements-container {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* HEADER SECTION */
+/* Title → Subtext: 10px, Subtext → Stats: 50px */
+/* ═══════════════════════════════════════════════════════ */
+
+.achievements-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.achievements-header.animate-in {
+  animation: headerEnter 0.8s ease-out forwards;
+}
+
+@keyframes headerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title styling — very large, bold, white */
+.achievements-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+/* Subtext styling — slightly muted color */
+.achievements-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* STATS GRID LAYOUT */
+/* 3 columns (desktop), center aligned, 60px gap */
+/* ═══════════════════════════════════════════════════════ */
+
+.achievements-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.achievements-stats.animate-in .achievements-stat {
+  animation: statEnter 0.6s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* INDIVIDUAL STAT BLOCK */
+/* Entry animation on scroll: scale + fade, 0.15s stagger */
+/* ═══════════════════════════════════════════════════════ */
+
+.achievements-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Entry animation: scale 0.9→1, opacity 0→1 */
+@keyframes statEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hover interaction: slight scale 1.05, glow intensifies */
+.achievements-stat:hover {
+  transform: scale(1.05);
+  background: rgba(125, 74, 138, 0.15);
+  border-color: rgba(125, 74, 138, 0.3);
+  box-shadow: 0 0 30px rgba(125, 74, 138, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* STAT NUMBER */
+/* Very large (48px–60px), bold, white, highlight color */
+/* Count-up animation: 0 → value over ~1.5s */
+/* Glow pulse effect every few seconds */
+/* ═══════════════════════════════════════════════════════ */
+
+.stat-number {
+  font-size: 54px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -1px;
+  text-shadow: 0 0 30px rgba(125, 74, 138, 0.4);
+  animation: numberGlow 3s ease-in-out infinite;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Glow pulse effect — soft pulse every few seconds */
+@keyframes numberGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(125, 74, 138, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(125, 74, 138, 0.6);
+  }
+}
+
+/* Hover: glow intensifies */
+.achievements-stat:hover .stat-number {
+  text-shadow: 0 0 50px rgba(125, 74, 138, 0.8);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* STAT LABEL */
+/* Small (14px–16px), slightly muted color */
+/* ═══════════════════════════════════════════════════════ */
+
+.stat-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  transition: color 0.3s ease;
+}
+
+.achievements-stat:hover .stat-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN — Tablet (1024px and below) */
+/* TABLET: 2 columns */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .achievements-wrapper {
+    min-height: auto;
+    padding: 80px 0;
+  }
+
+  .achievements-container {
+    padding: 0 30px;
+  }
+
+  .achievements-title {
+    font-size: 2.2rem;
+  }
+
+  .achievements-subtitle {
+    font-size: 1rem;
+  }
+
+  .achievements-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+
+  .stat-number {
+    font-size: 48px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN — Mobile (768px and below) */
+/* MOBILE: stacked vertically, gap 30px */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .achievements-wrapper {
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  .achievements-container {
+    padding: 0 20px;
+  }
+
+  .achievements-header {
+    margin-bottom: 40px;
+  }
+
+  .achievements-title {
+    font-size: 2rem;
+  }
+
+  .achievements-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .achievements-stats {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .achievements-stat {
+    padding: 30px 20px;
+  }
+
+  .stat-number {
+    font-size: 42px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN — Small Mobile (480px and below) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .achievements-wrapper {
+    padding: 50px 0;
+  }
+
+  .achievements-container {
+    padding: 0 16px;
+  }
+
+  .achievements-header {
+    margin-bottom: 30px;
+  }
+
+  .achievements-title {
+    font-size: 1.6rem;
+  }
+
+  .achievements-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .achievements-stats {
+    gap: 20px;
+  }
+
+  .achievements-stat {
+    padding: 25px 15px;
+    gap: 10px;
+  }
+
+  .stat-number {
+    font-size: 36px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* ACCESSIBILITY — Reduced motion preference */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .achievements-bg-glow,
+  .achievements-header.animate-in,
+  .achievements-stats.animate-in .achievements-stat,
+  .stat-number {
+    animation: none;
+  }
+
+  .achievements-stat,
+  .stat-number,
+  .stat-label {
+    transition: none;
+  }
+}
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* ACCESSIBILITY — Reduced motion preference */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .achievements-bg-glow {
+    animation: none;
+  }
+
+  .achievements-stat,
+  .achievements-header {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .stat-number {
+    animation: none;
+    text-shadow: 0 0 20px rgba(125, 74, 138, 0.3);
+  }
+
+  .achievements-stat,
+  .achievements-stat:hover {
+    transition: none;
+  }
+}

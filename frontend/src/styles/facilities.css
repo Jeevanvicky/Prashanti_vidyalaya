@@ -1,0 +1,407 @@
+/* ═══════════════════════════════════════════════════════ */
+/* FACILITIES & STUDENT LIFE — SEQUENTIAL STORYTELLING */
+/* ═══════════════════════════════════════════════════════ */
+
+/* SECTION WRAPPER — Cinematic, clean base */
+.facilities-wrapper {
+  background: linear-gradient(180deg, #fafaf9 0%, #f5f5f3 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* BACKGROUND LAYER — Minimal, non-distracting */
+.facilities-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at 70% 30%,
+    rgba(125, 74, 138, 0.04) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* MAIN CONTAINER */
+/* ═══════════════════════════════════════════════════════ */
+
+.facilities-container {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════════════ */
+/* HERO HEADER SECTION */
+/* ═══════════════════════════════════════════════════════ */
+
+.facilities-hero {
+  text-align: center;
+  padding: 80px 40px 60px;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.facilities-hero-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #5a2a4d;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+
+.facilities-hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* SLIDES CONTAINER — Sequential layout */
+/* ═══════════════════════════════════════════════════════ */
+
+.facilities-slides {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* INDIVIDUAL SLIDE STYLING */
+/* ═══════════════════════════════════════════════════════ */
+
+.facilities-slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+  pointer-events: auto;
+}
+
+/* Slide visible state — Entry animation */
+.facilities-slide.slide-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Alternate slide layout for visual variety */
+.facilities-slide:nth-child(even) {
+  grid-template-columns: 1fr 1fr;
+  direction: rtl;
+}
+
+.facilities-slide:nth-child(even) > * {
+  direction: ltr;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* SLIDE IMAGE SECTION */
+/* ═══════════════════════════════════════════════════════ */
+
+.facilities-slide-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.facilities-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Overlay gradient */
+.facilities-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(90, 42, 77, 0.08), transparent);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* SLIDE CONTENT SECTION */
+/* ═══════════════════════════════════════════════════════ */
+
+.facilities-slide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+
+.facilities-slide-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #5a2a4d;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+  padding: 0;
+}
+
+.facilities-slide-description {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #555555;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+/* Sub-points for highlight slide */
+.facilities-slide-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.facilities-slide-point {
+  font-size: 0.95rem;
+  color: #666666;
+  line-height: 1.6;
+  padding-left: 22px;
+  position: relative;
+  font-weight: 500;
+}
+
+.facilities-slide-point::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #7d4a8a;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* HIGHLIGHT SLIDE — Student Life */
+/* ═══════════════════════════════════════════════════════ */
+
+.facilities-slide.slide-highlight {
+  background: linear-gradient(135deg, #7d4a8a 0%, #5a2a4d 100%);
+  border-radius: 12px;
+  padding: 40px;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  color: #ffffff;
+  box-shadow: 0 20px 60px rgba(125, 74, 138, 0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-highlight .facilities-slide-image-wrapper {
+  height: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.slide-highlight .facilities-slide-title {
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.slide-highlight .facilities-slide-description {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.05rem;
+}
+
+.slide-highlight .facilities-slide-point {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.slide-highlight .facilities-slide-point::before {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Subtle animation for highlight slide */
+@keyframes highlightGlow {
+  0%, 100% {
+    box-shadow: 0 20px 60px rgba(125, 74, 138, 0.2);
+  }
+  50% {
+    box-shadow: 0 20px 80px rgba(125, 74, 138, 0.35);
+  }
+}
+
+.slide-highlight.slide-visible {
+  animation: highlightGlow 3s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN — Tablet (1024px) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .facilities-slides {
+    gap: 80px;
+    padding: 30px;
+  }
+
+  .facilities-slide {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .facilities-slide:nth-child(even) {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+
+  .facilities-slide-image-wrapper {
+    height: 400px;
+  }
+
+  .facilities-slide-title {
+    font-size: 1.6rem;
+  }
+
+  .facilities-slide-description {
+    font-size: 0.95rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN — Mobile (768px) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .facilities-hero {
+    padding: 60px 20px 40px;
+  }
+
+  .facilities-hero-title {
+    font-size: 1.8rem;
+  }
+
+  .facilities-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .facilities-slides {
+    gap: 60px;
+    padding: 20px;
+  }
+
+  .facilities-slide {
+    gap: 20px;
+  }
+
+  .facilities-slide-image-wrapper {
+    height: 320px;
+  }
+
+  .facilities-slide-content {
+    padding: 10px;
+  }
+
+  .facilities-slide-title {
+    font-size: 1.4rem;
+  }
+
+  .facilities-slide-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .slide-highlight {
+    padding: 25px;
+  }
+
+  .slide-highlight .facilities-slide-image-wrapper {
+    height: 280px;
+  }
+
+  .slide-highlight .facilities-slide-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN — Small Mobile (480px) */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .facilities-hero {
+    padding: 40px 16px;
+  }
+
+  .facilities-hero-title {
+    font-size: 1.5rem;
+  }
+
+  .facilities-hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .facilities-slides {
+    gap: 40px;
+    padding: 16px;
+  }
+
+  .facilities-slide-image-wrapper {
+    height: 280px;
+  }
+
+  .facilities-slide-title {
+    font-size: 1.2rem;
+  }
+
+  .facilities-slide-description {
+    font-size: 0.85rem;
+  }
+
+  .facilities-slide-point {
+    font-size: 0.8rem;
+  }
+
+  .slide-highlight .facilities-slide-title {
+    font-size: 1.4rem;
+  }
+
+  .slide-highlight .facilities-slide-image-wrapper {
+    height: 240px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/* ACCESSIBILITY — Reduced motion preference */
+/* ═══════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .facilities-slide {
+    transition: none;
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  .slide-highlight.slide-visible {
+    animation: none;
+  }
+}
